@@ -167,7 +167,7 @@ nav{
     align-items: center;
     padding: 10px 20px;
     position: sticky;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: ''Arial Black', Arial, sans-serif;
     z-index: 1000;
     height: 2.5rem;
 }
@@ -306,3 +306,4 @@ nav ul li a:hover::after{
   background: #27ae60;
   transform: translateX(6px) scale(1.1)
 }
+
