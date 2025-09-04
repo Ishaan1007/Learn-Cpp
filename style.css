@@ -6,6 +6,7 @@ body{
     background-position: top;
     background-attachment: fixed;
     background-image: url(bg_cpp.png);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 .page-content{
     align-items: center;
@@ -167,7 +168,7 @@ nav{
     align-items: center;
     padding: 10px 20px;
     position: sticky;
-    font-family: ''Arial Black', Arial, sans-serif;
+    font-family: 'Arial Black', Arial, sans-serif;
     z-index: 1000;
     height: 2.5rem;
 }
