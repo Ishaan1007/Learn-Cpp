@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>While Loop in C++</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background: #f4f4f9;
+    }
+    .card {
+      width: 95%;
+      max-width: 900px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    .tabs {
+      display: flex;
+      background: #4caf55;
+    }
+    .tabs button {
+      flex: 1;
+      padding: 15px;
+      border: none;
+      background: #4caf55;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .tabs button:hover,
+    .tabs button.active {
+      background: #117811;
+    }
+    .content {
+      padding: 20px;
+      display: none;
+    }
+    .content.active {
+      display: block;
+    }
+    pre {
+      background: #f4f4f4;
+      color: black;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    h2 {
+      color: #4caf55;
+    }
+    h3{
+        color: #1a5276;
+    }
+    ul { margin-left: 20px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showContent('def')">Definition</button>
+      <button class="tab-btn" onclick="showContent('ex')">Examples</button>
+      <button class="tab-btn" onclick="showContent('qs')">Questions</button>
+    </div>
+
+    <!-- Definition Tab -->
+    <div id="def" class="content active">
+      <h2>While Loop in C++</h2>
+      <p>
+        The <b>while loop</b> is an entry-controlled loop.  
+        The condition is checked <b>before</b> executing the loop body.  
+        If the condition is true, the loop executes; otherwise, it stops.
+      </p>
+      <h3>Syntax:</h3>
+      <pre>
+while(condition) {
+    // statements
+}
+      </pre>
+      <h3>Flow of Execution:</h3>
+      <ol>
+        <li>Check the condition.</li>
+        <li>If true, execute the loop body.</li>
+        <li>Go back to step 1.</li>
+        <li>If false, exit the loop.</li>
+      </ol>
+      <h3>Key Points:</h3>
+      <ul>
+        <li>Used when the number of iterations is not known in advance.</li>
+        <li>If condition is false initially, loop body never executes.</li>
+        <li>Be careful of <b>infinite loops</b> if condition never becomes false.</li>
+      </ul>
+    </div>
+
+    <!-- Examples Tab -->
+    <div id="ex" class="content">
+      <h2>Examples</h2>
+
+      <h3>1. Print 1 to 10</h3>
+      <pre>
+int i=1;
+while(i<=10) {
+    cout << i << " ";
+    i++;
+}
+      </pre>
+
+      <h3>2. Sum of First N Numbers</h3>
+      <pre>
+int n, sum=0, i=1;
+cin >> n;
+while(i<=n) {
+    sum += i;
+    i++;
+}
+cout << "Sum = " << sum;
+      </pre>
+
+      <h3>3. Reverse a Number</h3>
+      <pre>
+int n, rev=0;
+cin >> n;
+while(n>0) {
+    int digit = n%10;
+    rev = rev*10 + digit;
+    n /= 10;
+}
+cout << "Reverse = " << rev;
+      </pre>
+
+      <h3>4. Factorial</h3>
+      <pre>
+int n, fact=1, i=1;
+cin >> n;
+while(i<=n) {
+    fact *= i;
+    i++;
+}
+cout << "Factorial = " << fact;
+      </pre>
+
+      <h3>5. Palindrome Check</h3>
+      <pre>
+int n, rev=0, orig;
+cin >> n;
+orig = n;
+while(n>0) {
+    int d = n%10;
+    rev = rev*10 + d;
+    n /= 10;
+}
+if(rev==orig) cout << "Palindrome";
+else cout << "Not Palindrome";
+      </pre>
+
+      <h3>6. Count Digits</h3>
+      <pre>
+int n, count=0;
+cin >> n;
+while(n>0) {
+    count++;
+    n /= 10;
+}
+cout << "Digits = " << count;
+      </pre>
+
+      <h3>7. Menu Driven Program</h3>
+      <pre>
+int choice;
+do {
+    cout << "1. Add\n2. Subtract\n3. Exit\n";
+    cin >> choice;
+    if(choice==1) cout << "Addition\n";
+    else if(choice==2) cout << "Subtraction\n";
+} while(choice!=3);
+      </pre>
+    </div>
+
+    <!-- Questions Tab -->
+    <div id="qs" class="content">
+      <h2>Practice Questions</h2>
+
+      <h3>Theory Questions</h3>
+      <ul>
+        <li>How is while loop different from for loop?</li>
+        <li>What happens if the condition is always true?</li>
+        <li>Why is while loop called entry-controlled loop?</li>
+      </ul>
+
+      <h3>Coding Questions</h3>
+      <ul>
+        <li>Print all odd numbers between 1 and 100 using while loop.</li>
+        <li>Check if a number is Armstrong using while loop.</li>
+        <li>Find the sum of digits of a number.</li>
+        <li>Generate Fibonacci series using while loop.</li>
+        <li>Find LCM of two numbers.</li>
+        <li>Print multiplication table using while loop.</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    function showContent(id) {
+      let contents = document.querySelectorAll('.content');
+      let buttons = document.querySelectorAll('.tab-btn');
+      contents.forEach(c => c.classList.remove('active'));
+      buttons.forEach(b => b.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      event.target.classList.add('active');
+    }
+  </script>
+</body>
+</html>

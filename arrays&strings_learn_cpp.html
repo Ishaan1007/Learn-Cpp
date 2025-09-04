@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C++ Notes - Arrays & Strings</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .card {
+      background: #fff;
+      width: 75%;
+      max-width: 900px;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .tabs {
+      display: flex;
+      background: #4caf55;
+    }
+
+    .tabs label {
+      flex: 1;
+      padding: 15px;
+      text-align: center;
+      color: #fff;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .tabs label:hover {
+      background: #117811;
+    }
+
+    input[type="radio"] {
+      display: none;
+    }
+
+    .content {
+      padding: 20px;
+      display: none;
+      animation: fadeIn 0.4s;
+    }
+
+    input#tab1:checked ~ .content1,
+    input#tab2:checked ~ .content2,
+    input#tab3:checked ~ .content3 {
+      display: block;
+    }
+
+    input#tab1:checked ~ .tabs label[for="tab1"],
+    input#tab2:checked ~ .tabs label[for="tab2"],
+    input#tab3:checked ~ .tabs label[for="tab3"] {
+      background: #117811;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #4caf55;
+    }
+    h3{
+        color: #1a5276;
+    }
+    pre {
+      background: #ecf0f1;
+      padding: 10px;
+      border-radius: 6px;
+      overflow-x: auto;
+    }
+    ul {
+      line-height: 1.8;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <input type="radio" name="tabs" id="tab1" checked>
+    <input type="radio" name="tabs" id="tab2">
+    <input type="radio" name="tabs" id="tab3">
+
+    <div class="tabs">
+      <label for="tab1">Definition</label>
+      <label for="tab2">Examples</label>
+      <label for="tab3">Questions</label>
+    </div>
+
+    <!-- Definition Section -->
+    <div class="content content1">
+      <h2>Arrays in C++</h2>
+      <p>An <b>array</b> is a collection of elements of the same type stored in contiguous memory locations. Each element can be accessed using its index (starting from 0).</p>
+      <h3>Types of Arrays:</h3>
+      <ul>
+        <li><b>One-dimensional (1D)</b>: Linear collection of elements.</li>
+        <li><b>Two-dimensional (2D)</b>: Represented as rows and columns (matrices).</li>
+        <li><b>Multi-dimensional</b>: Arrays with more than two dimensions.</li>
+      </ul>
+
+      <h2>Strings in C++</h2>
+      <p>A <b>string</b> is a sequence of characters terminated by a null character (<code>'\0'</code>).</p>
+      <h3>Ways to Handle Strings:</h3>
+      <ul>
+        <li><b>C-style strings</b> using character arrays.</li>
+        <li><b>String class</b> in C++ (provides advanced functionality).</li>
+      </ul>
+    </div>
+
+    <!-- Examples Section -->
+    <div class="content content2">
+      <h2>Examples</h2>
+      <h3>1. One-Dimensional Array</h3>
+      <pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int marks[5] = {90, 85, 78, 92, 88};
+    for(int i=0; i&lt;5; i++) {
+        cout &lt;&lt; "Marks[" &lt;&lt; i &lt;&lt; "] = " &lt;&lt; marks[i] &lt;&lt; endl;
+    }
+    return 0;
+}
+      </pre>
+
+      <h3>2. Two-Dimensional Array (Matrix)</h3>
+      <pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int mat[2][3] = {{1,2,3},{4,5,6}};
+    for(int i=0; i&lt;2; i++) {
+        for(int j=0; j&lt;3; j++) {
+            cout &lt;&lt; mat[i][j] &lt;&lt; " ";
+        }
+        cout &lt;&lt; endl;
+    }
+    return 0;
+}
+      </pre>
+
+      <h3>3. C-Style String</h3>
+      <pre>
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+using namespace std;
+
+int main() {
+    char name[20];
+    cout &lt;&lt; "Enter your name: ";
+    cin &gt;&gt; name;
+    cout &lt;&lt; "Length of string = " &lt;&lt; strlen(name);
+    return 0;
+}
+      </pre>
+
+      <h3>4. String Class in C++</h3>
+      <pre>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main() {
+    string s1 = "Hello";
+    string s2 = "World";
+    string s3 = s1 + " " + s2;
+    cout &lt;&lt; s3;
+    return 0;
+}
+      </pre>
+
+      <h3>5. Find Secind Largest Element in Array</h3>
+      <pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int arr[] = {10, 45, 67, 89, 12, 67};
+    int n = 6;
+    int first = -1e9, second = -1e9;
+
+    for(int i=0;i&lt;n;i++){
+        if(arr[i] &gt; first){
+            second = first;
+            first = arr[i];
+        } 
+        else if(arr[i] &gt; second && arr[i] != first){
+            second = arr[i];
+        }
+    }
+    cout &lt;&lt; "Second Largest = " &lt;&lt; second;
+}
+</pre>
+
+      <h3>6. Rotate Array by k Positions</h3>
+      <pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+void rotateRight(int arr[], int n, int k){
+    k = k % n;
+    int temp[n];
+    for(int i=0;i&lt;n;i++){
+        temp[(i+k)%n] = arr[i];
+    }
+    for(int i=0;i&lt;n;i++) arr[i] = temp[i];
+}
+
+int main(){
+    int arr[] = {1,2,3,4,5,6};
+    int n=6, k=2;
+    rotateRight(arr,n,k);
+    for(int x: arr) cout &lt;&lt; x &lt;&lt; " ";
+}
+</pre>
+
+      <h3>7. Matrix Multiplication (2D Arrays)</h3>
+      <pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main(){
+    int A[2][2]={{1,2},{3,4}};
+    int B[2][2]={{5,6},{7,8}};
+    int C[2][2]={0};
+
+    for(int i=0;i&lt;2;i++){
+        for(int j=0;j&lt;2;j++){
+            for(int k=0;k&lt;2;k++){
+                C[i][j] += A[i][k]*B[k][j];
+            }
+        }
+    }
+
+    cout &lt;&lt; "Result Matrix:\n";
+    for(int i=0;i&lt;2;i++){
+        for(int j=0;j&lt;2;j++){
+            cout &lt;&lt; C[i][j] &lt;&lt; " ";
+        }
+        cout &lt;&lt; endl;
+    }
+}
+</pre>
+
+      <h3>8. Find Duplicate Elements in Array</h3>
+      <pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main(){
+    int arr[] = {4, 5, 6, 4, 7, 5, 8};
+    int n = 7;
+
+    cout &lt;&lt; "Duplicate Elements: ";
+    for(int i=0;i&lt;n;i++){
+        for(int j=i+1;j&lt;n;j++){
+            if(arr[i]==arr[j]){
+                cout &lt;&lt; arr[i] &lt;&lt; " ";
+                break;
+            }
+        }
+    }
+}
+</pre>
+
+     <h3>9. Pascals Triangle using Arrays</h3>
+     <pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main(){
+    int n=5;
+    int arr[10][10]={0};
+
+    for(int i=0;i&lt;n;i++){
+        arr[i][0]=arr[i][i]=1;
+        for(int j=1;j&lt;i;j++)
+            arr[i][j] = arr[i-1][j-1]+arr[i-1][j];
+    }
+
+    for(int i=0;i&lt;n;i++){
+        for(int j=0;j&lt;=i;j++)
+            cout &lt;&lt; arr[i][j] &lt;&lt; " ";
+        cout &lt;&lt; endl;
+    }
+}
+</pre>
+    </div>
+
+    <!-- Questions Section -->
+    <div class="content content3">
+      <h2>Practice Questions</h2>
+      <ul>
+        <li>What is an array? List its advantages and disadvantages.</li>
+        <li>Write a program to find the largest element in an array of 10 numbers.</li>
+        <li>Explain the difference between 1D and 2D arrays with examples.</li>
+        <li>Write a program to multiply two matrices.</li>
+        <li>Differentiate between C-style strings and string class in C++.</li>
+        <li>Write a program to count vowels in a string.</li>
+        <li>Write a program to check whether a given string is a palindrome.</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

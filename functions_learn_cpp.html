@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C++ Notes - Functions</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .card {
+      background: #fff;
+      width: 70%;
+      max-width: 800px;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .tabs {
+      display: flex;
+      background: #4caf55;
+    }
+
+    .tabs label {
+      flex: 1;
+      padding: 15px;
+      text-align: center;
+      color: #fff;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .tabs label:hover {
+      background: #117811;
+    }
+
+    input[type="radio"] {
+      display: none;
+    }
+
+    .content {
+      padding: 20px;
+      display: none;
+      animation: fadeIn 0.4s;
+    }
+
+    input#tab1:checked ~ .content1,
+    input#tab2:checked ~ .content2,
+    input#tab3:checked ~ .content3 {
+      display: block;
+    }
+
+    input#tab1:checked ~ .tabs label[for="tab1"],
+    input#tab2:checked ~ .tabs label[for="tab2"],
+    input#tab3:checked ~ .tabs label[for="tab3"] {
+      background: #117811;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #4caf55;
+    }
+
+    h3{
+        color: #1a5276;
+    }
+    pre {
+      background: #ecf0f1;
+      padding: 10px;
+      border-radius: 6px;
+      overflow-x: auto;
+    }
+    ul {
+      line-height: 1.8;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <input type="radio" name="tabs" id="tab1" checked>
+    <input type="radio" name="tabs" id="tab2">
+    <input type="radio" name="tabs" id="tab3">
+
+    <div class="tabs">
+      <label for="tab1">Definition</label>
+      <label for="tab2">Examples</label>
+      <label for="tab3">Questions</label>
+    </div>
+
+    <!-- Definition Section -->
+    <div class="content content1">
+      <h2>Functions in C++</h2>
+      <p>A <b>function</b> is a self-contained block of code that performs a specific task. Functions help in code reusability, readability, and modular programming.</p>
+      <h3>Types of Functions:</h3>
+      <ul>
+        <li><b>Library Functions</b>: Predefined (like sqrt(), pow(), strlen()).</li>
+        <li><b>User-defined Functions</b>: Written by the programmer.</li>
+      </ul>
+      <h3>Components of a Function:</h3>
+      <ul>
+        <li><b>Declaration</b>: Tells the compiler about the function (prototype).</li>
+        <li><b>Definition</b>: Actual body of the function.</li>
+        <li><b>Call</b>: Invoking the function.</li>
+      </ul>
+      <h3>Categories:</h3>
+      <ul>
+        <li>Functions with arguments and return value.</li>
+        <li>Functions with arguments and no return value.</li>
+        <li>Functions with no arguments and return value.</li>
+        <li>Functions with no arguments and no return value.</li>
+      </ul>
+    </div>
+
+    <!-- Examples Section -->
+    <div class="content content2">
+      <h2>Examples</h2>
+      <h3>1. Function to Add Two Numbers</h3>
+      <pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int add(int a, int b) {
+    return a + b;
+}
+
+int main() {
+    int x = 5, y = 10;
+    cout &lt;&lt; "Sum = " &lt;&lt; add(x, y);
+    return 0;
+}
+      </pre>
+
+      <h3>2. Function with No Arguments, No Return Value</h3>
+      <pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+void greet() {
+    cout &lt;&lt; "Hello, Welcome to C++!";
+}
+
+int main() {
+    greet();
+    return 0;
+}
+      </pre>
+
+      <h3>3. Recursive Function: Factorial</h3>
+      <pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int factorial(int n) {
+    if(n == 0) return 1;
+    return n * factorial(n - 1);
+}
+
+int main() {
+    int num = 5;
+    cout &lt;&lt; "Factorial = " &lt;&lt; factorial(num);
+    return 0;
+}
+      </pre>
+
+      <h3>4. Menu-Driven Calculator</h3>
+      <pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int add(int a, int b) { return a+b; }
+int sub(int a, int b) { return a-b; }
+int mul(int a, int b) { return a*b; }
+float divi(int a, int b) { return (float)a/b; }
+
+int main() {
+    int choice,a,b;
+    cout &lt;&lt; "1.Add 2.Sub 3.Mul 4.Div\n";
+    cin &gt;&gt; choice &gt;&gt; a &gt;&gt; b;
+    switch(choice){
+        case 1: cout &lt;&lt; add(a,b); break;
+        case 2: cout &lt;&lt; sub(a,b); break;
+        case 3: cout &lt;&lt; mul(a,b); break;
+        case 4: cout &lt;&lt; divi(a,b); break;
+        default: cout &lt;&lt; "Invalid";
+    }
+}
+      </pre>
+
+      <h3>5. Student Result System</h3>
+      <pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+float percentage(int m1,int m2,int m3,int m4,int m5){
+    return (m1+m2+m3+m4+m5)/5.0;
+}
+
+char grade(float p){
+    if(p&gt;=90) return 'A';
+    else if(p&gt;=75) return 'B';
+    else if(p&gt;=50) return 'C';
+    else return 'F';
+}
+
+int main(){
+    int m1,m2,m3,m4,m5;
+    cout &lt;&lt; "Enter 5 subject marks: ";
+    cin &gt;&gt; m1 &gt;&gt; m2 &gt;&gt; m3 &gt;&gt; m4 &gt;&gt; m5;
+    float p = percentage(m1,m2,m3,m4,m5);
+    cout &lt;&lt; "Percentage: " &lt;&lt; p &lt;&lt; "%\nGrade: " &lt;&lt; grade(p);
+}
+      </pre>
+
+      <h3>6. Bank Account Simulation</h3>
+      <pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int balance = 1000;
+
+void deposit(int amt){ balance += amt; }
+void withdraw(int amt){ 
+    if(amt &gt; balance) cout &lt;&lt; "Insufficient balance\n";
+    else balance -= amt; 
+}
+void showBalance(){ cout &lt;&lt; "Balance: " &lt;&lt; balance &lt;&lt; endl; }
+
+int main(){
+    deposit(500);
+    withdraw(200);
+    showBalance();
+}
+      </pre>
+
+      <h3>7. Password Validator</h3>
+      <pre>
+#include &lt;iostream&gt;
+#include &lt;cctype&gt;
+using namespace std;
+
+bool isValidPassword(string pwd) {
+    bool upper=false, lower=false, digit=false, special=false;
+    for(char c: pwd){
+        if(isupper(c)) upper=true;
+        else if(islower(c)) lower=true;
+        else if(isdigit(c)) digit=true;
+        else special=true;
+    }
+    return (upper && lower && digit && special && pwd.size()&gt;=8);
+}
+
+int main(){
+    string pass;
+    cout &lt;&lt; "Enter password: ";
+    cin &gt;&gt; pass;
+    if(isValidPassword(pass))
+        cout &lt;&lt; "Strong Password ✅";
+    else
+        cout &lt;&lt; "Weak Password ❌";
+}
+      </pre>
+
+      <h3>8. Calculator (with recursion for power a^b)</h3>
+      <pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int add(int a, int b) { return a+b; }
+int sub(int a, int b) { return a-b; }
+int mul(int a, int b) { return a*b; }
+float divi(int a, int b) { return (float)a/b; }
+int power(int base, int exp) {
+    if(exp == 0) return 1;
+    return base * power(base, exp-1);   // recursion
+}
+
+int main() {
+    int choice,a,b;
+    cout &lt;&lt; "1.Add 2.Sub 3.Mul 4.Div 5.Power\n";
+    cin &gt;&gt; choice &gt;&gt; a &gt;&gt; b;
+    switch(choice){
+        case 1: cout &lt;&lt; add(a,b); break;
+        case 2: cout &lt;&lt; sub(a,b); break;
+        case 3: cout &lt;&lt; mul(a,b); break;
+        case 4: cout &lt;&lt; divi(a,b); break;
+        case 5: cout &lt;&lt; power(a,b); break;
+        default: cout &lt;&lt; "Invalid Choice";
+    }
+}
+</pre>
+
+     <h3>9. Bank Account Simulation (with PIN verification)</h3>
+     <pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int balance = 2000;
+int pin = 1234;
+
+bool verifyPin(int entered) {
+    return entered == pin;
+}
+
+void deposit(int amt){ balance += amt; }
+void withdraw(int amt){ 
+    if(amt &gt; balance) cout &lt;&lt; "Insufficient balance\n";
+    else balance -= amt; 
+}
+void showBalance(){ cout &lt;&lt; "Balance: " &lt;&lt; balance &lt;&lt; endl; }
+
+int main(){
+    int enteredPin;
+    cout &lt;&lt; "Enter PIN: ";
+    cin &gt;&gt; enteredPin;
+
+    if(!verifyPin(enteredPin)){
+        cout &lt;&lt; "❌ Wrong PIN. Access Denied.";
+        return 0;
+    }
+
+    int choice, amt;
+    cout &lt;&lt; "1.Deposit 2.Withdraw 3.Check Balance\n";
+    cin &gt;&gt; choice;
+
+    switch(choice){
+        case 1: cout &lt;&lt; "Amount: "; cin &gt;&gt; amt; deposit(amt); break;
+        case 2: cout &lt;&lt; "Amount: "; cin &gt;&gt; amt; withdraw(amt); break;
+        case 3: showBalance(); break;
+        default: cout &lt;&lt; "Invalid Option";
+    }
+
+    showBalance();
+}
+</pre>
+    </div>
+
+    <!-- Questions Section -->
+    <div class="content content3">
+      <h2>Practice Questions</h2>
+      <ul>
+        <li>Define a function and explain its components in C++.</li>
+        <li>Write a program using a function to check whether a number is prime.</li>
+        <li>Differentiate between call by value and call by reference with examples.</li>
+        <li>Write a function to find the greatest of three numbers.</li>
+        <li>Explain recursion with an example program.</li>
+        <li>Write a program to calculate nCr using functions.</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

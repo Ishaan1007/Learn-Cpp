@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C++ Notes - Functions</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .card {
+      background: #fff;
+      width: 70%;
+      max-width: 800px;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .tabs {
+      display: flex;
+      background: #4caf55;
+    }
+
+    .tabs label {
+      flex: 1;
+      padding: 15px;
+      text-align: center;
+      color: #fff;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .tabs label:hover {
+      background: #117811;
+    }
+
+    input[type="radio"] {
+      display: none;
+    }
+
+    .content {
+      padding: 20px;
+      display: none;
+      animation: fadeIn 0.4s;
+    }
+
+    input#tab1:checked ~ .content1,
+    input#tab2:checked ~ .content2,
+    input#tab3:checked ~ .content3 {
+      display: block;
+    }
+
+    input#tab1:checked ~ .tabs label[for="tab1"],
+    input#tab2:checked ~ .tabs label[for="tab2"],
+    input#tab3:checked ~ .tabs label[for="tab3"] {
+      background: #117811;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #4caf55;
+    }
+
+    h3{
+        color: #1a5276;
+    }
+    pre {
+      background: #ecf0f1;
+      padding: 10px;
+      border-radius: 6px;
+      overflow-x: auto;
+    }
+    ul {
+      line-height: 1.8;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <input type="radio" name="tabs" id="tab1" checked>
+    <input type="radio" name="tabs" id="tab2">
+    <input type="radio" name="tabs" id="tab3">
+
+    <div class="tabs">
+      <label for="tab1">Definition</label>
+      <label for="tab2">Examples</label>
+      <label for="tab3">Questions</label>
+    </div>
+
+    <!-- Definition Section -->
+    <div class="content content1">
+      <h3>If-Else & Nested If (Advanced)</h3>
+      <p>
+        Control structures like <b>if</b>, <b>if-else</b> and <b>nested-if</b> allow
+        decision-making in C++ programs. Instead of executing sequentially,
+        they choose a path depending on conditions. <br><br>
+        In exams, tough problems usually involve <b>multiple conditions</b>,
+        <b>mathematical checks</b>, and <b>nested blocks</b> (if inside if).
+      </p>
+    </div>
+
+    <!-- Examples -->
+    <div class="content content2">
+      <h3>Tough Examples in If / If-Else / Nested If</h3>
+
+      <b>1. Largest of Three Numbers (Nested If)</b>
+      <pre>
+if(a > b) {
+    if(a > c) cout << "Largest = " << a;
+    else cout << "Largest = " << c;
+} else {
+    if(b > c) cout << "Largest = " << b;
+    else cout << "Largest = " << c;
+}
+      </pre>
+
+      <b>2. Type of Triangle</b>
+      <pre>
+if(a == b && b == c)
+    cout << "Equilateral";
+else if(a == b || b == c || a == c)
+    cout << "Isosceles";
+else
+    cout << "Scalene";
+      </pre>
+
+      <b>3. Quadratic Equation Roots</b>
+      <pre>
+int d = b*b - 4*a*c;
+if(d > 0) cout << "Real & Distinct";
+else if(d == 0) cout << "Real & Equal";
+else cout << "Imaginary Roots";
+      </pre>
+
+      <b>4. Leap Year (Nested If)</b>
+      <pre>
+if(year % 4 == 0) {
+    if(year % 100 == 0) {
+        if(year % 400 == 0) cout << "Leap Year";
+        else cout << "Not Leap Year";
+    } else cout << "Leap Year";
+} else cout << "Not Leap Year";
+      </pre>
+
+      <b>5. Grading System</b>
+      <pre>
+if(marks >= 90) cout << "Grade A+";
+else if(marks >= 75) cout << "Grade A";
+else if(marks >= 60) cout << "Grade B";
+else if(marks >= 45) cout << "Grade C";
+else if(marks >= 33) cout << "Grade D";
+else cout << "Fail";
+      </pre>
+    </div>
+
+    <!-- Questions -->
+    <div class="content content3">
+      <h3>Practice Questions (If-Else / Nested If)</h3>
+      <ol>
+        <li>Write a program to find the greatest of four numbers using nested if.</li>
+        <li>Check whether a character is a vowel or consonant (without logical operators).</li>
+        <li>Develop a program to input marks of 5 subjects and print percentage & grade using if-else ladder.</li>
+        <li>Write a program to check whether a person is eligible for driving license:
+          - Age ≥ 18, must pass eye test (nested if).
+        </li>
+        <li>Check whether entered time is valid or not (hours: 0–23, minutes: 0–59, seconds: 0–59).</li>
+      </ol>
+    </div>
+  </div>
+</body>
+</html>

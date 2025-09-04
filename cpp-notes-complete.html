@@ -1,0 +1,653 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>C++ Notes — Complete</title>
+  <style>
+    :root{
+      --accent: #4caf55;
+      --bg: #ffffff;
+      --codebg: #eeeeee;
+      --codetxt: #333333;
+      --text: #333333;
+      --muted: #6b6b6b;
+      --border: #e6e6e6;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color:var(--text);
+      background:var(--bg);
+      display:flex;
+      min-height:100vh;
+    }
+    /* Sidebar */
+    nav{
+      position:sticky;
+      top:0;
+      align-self:flex-start;
+      width:250px;
+      height:100vh;
+      background:var(--accent);
+      padding:22px 18px;
+      overflow:auto;
+    }
+    nav h2{
+      margin:0 0 10px 0;
+      color:#fff;
+      font-size:20px;
+      letter-spacing:.3px;
+    }
+    nav input{
+      width:100%;
+      padding:8px 10px;
+      border:none;
+      border-radius:6px;
+      margin:10px 0 14px;
+      outline:none;
+    }
+    nav a{
+      display:block;
+      color:#fff;
+      text-decoration:none;
+      padding:8px 4px;
+      font-size:14px;
+      line-height:1.4;
+      border-radius:4px;
+    }
+    nav a:hover{background:rgba(255,255,255,0.08)}
+    /* Content */
+    .content{
+      flex:1;
+      padding:22px;
+      max-width:1100px;
+      margin:0 auto;
+    }
+    header{
+      background:var(--accent);
+      color:#fff;
+      padding:20px;
+      border-radius:10px;
+      margin-bottom:18px;
+      text-align:center;
+    }
+    header h1{margin:0;font-size:28px}
+    header p{margin:8px 0 0;color:#f0f7f1}
+    section{
+      background:#fff;
+      border:1px solid var(--border);
+      margin:16px 0;
+      padding:16px;
+      border-radius:10px;
+    }
+    section h2{
+      margin:0 0 8px 0;
+      color:var(--accent);
+      border-bottom:2px solid var(--codebg);
+      padding-bottom:8px;
+      font-size:20px;
+    }
+    .desc{color:var(--muted);margin:6px 0 12px;}
+    pre{
+      background:var(--codebg);
+      color:var(--codetxt);
+      padding:14px;
+      border-radius:8px;
+      overflow:auto;
+      font-family: "Consolas", "Menlo", "Monaco", "Courier New", monospace;
+      font-size:14px;
+      line-height:1.5;
+      border:1px solid #eaeaea;
+      white-space:pre-wrap;
+    }
+    code{color:var(--codetxt)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+    .taglist{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 0}
+    .tag{background:var(--codebg);border:1px solid #e4e4e4;padding:6px 10px;border-radius:20px;font-size:13px}
+    .toplink{display:inline-block;margin-top:12px;color:var(--accent);text-decoration:none}
+    footer{color:#666;font-size:13px;text-align:center;margin:28px 0}
+    @media (max-width:960px){
+      nav{display:none}
+      .content{padding:14px}
+    }
+    table{border-collapse:collapse;width:100%;margin-top:8px}
+    table td, table th{border:1px solid #eee;padding:6px 8px;font-size:13px}
+    table th{background:#fafafa;text-align:left}
+  </style>
+</head>
+<body>
+  <nav aria-label="Table of contents">
+    <h2>C++ Notes</h2>
+    <input id="filter" placeholder="Filter topics…" oninput="filterLinks(this.value)" />
+    <a href="#overview">Overview</a>
+    <a href="#boilerplate">Boilerplate & I/O</a>
+    <a href="#datatypes">Data Types</a>
+    <a href="#vars">Variables & Constants</a>
+    <a href="#operators">Operators</a>
+    <a href="#precedence">Operator Precedence</a>
+    <a href="#escapes">Escape Sequences</a>
+    <a href="#comments">Comments</a>
+    <a href="#strings">Strings & Char Arrays</a>
+    <a href="#arrays">Arrays</a>
+    <a href="#vector">Vectors & STL Basics</a>
+    <a href="#control">Control Flow (if / switch)</a>
+    <a href="#loops">Loops (for / while / do)</a>
+    <a href="#jump">Break & Continue</a>
+    <a href="#functions">Functions</a>
+    <a href="#recursion">Recursion</a>
+    <a href="#pointers">Pointers</a>
+    <a href="#references">References</a>
+    <a href="#dynamic">Dynamic Memory</a>
+    <a href="#structs">Structs & Unions</a>
+    <a href="#oop">OOP (Classes)</a>
+    <a href="#inheritance">Inheritance & Polymorphism</a>
+    <a href="#templates">Templates</a>
+    <a href="#exceptions">Exception Handling</a>
+    <a href="#files">File I/O</a>
+    <a href="#preproc">Preprocessor & Macros</a>
+    <a href="#namespaces">Namespaces</a>
+    <a href="#lambda">Lambda Expressions</a>
+    <a href="#smart">Smart Pointers</a>
+    <a href="#cheats">Cheat Sheet</a>
+  </nav>
+
+  <main class="content">
+    <header>
+      <h1>C++ Notes</h1>
+      <p>Expanded, structured notes covering operators, control flow, loops and all core topics.</p>
+    </header>
+
+    <section id="overview">
+      <h2>Overview</h2>
+      <p class="desc">Concise, single-page C++ reference — suitable for quick revision. Examples use standard headers and common idioms. All code is illustrative.</p>
+      <div class="taglist">
+        <div class="tag">syntax</div><div class="tag">operators</div><div class="tag">control flow</div>
+        <div class="tag">loops</div><div class="tag">functions</div><div class="tag">OOP</div>
+        <div class="tag">STL</div><div class="tag">pointers</div><div class="tag">memory</div>
+      </div>
+      <p><a class="toplink" href="#overview">↑ top</a></p>
+    </section>
+
+    <section id="boilerplate">
+      <h2>Boilerplate &amp; I/O</h2>
+      <p class="desc">Minimal program and console I/O using <code>iostream</code>.</p>
+      <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    cout &lt;&lt; "Hello, C++!" &lt;&lt; '\n';    // output
+    int x;
+    cout &lt;&lt; "Enter a number: ";
+    cin &gt;&gt; x;                            // input
+    cout &lt;&lt; "You entered: " &lt;&lt; x &lt;&lt; '\n';
+    return 0;
+}</code></pre>
+    <a class="toplink" href="#overview">↑ top</a>
+    </section>
+
+    <section id="datatypes">
+      <h2>Data Types</h2>
+      <p class="desc">Built-in fundamental types.</p>
+      <div class="grid">
+        <pre><code>// Character
+char c = 'A';</code></pre>
+        <pre><code>// Integer types
+short s; int i; long l; long long ll;</code></pre>
+        <pre><code>// Floating point
+float f = 3.14f; double d = 2.71828;</code></pre>
+        <pre><code>// Boolean
+bool ok = true;</code></pre>
+        <pre><code>// Void (no value)
+void func();</code></pre>
+      </div>
+      <a class="toplink" href="#overview">↑ top</a>
+    </section>
+
+    <section id="vars">
+      <h2>Variables &amp; Constants</h2>
+      <p class="desc">Declaring, initializing and constants.</p>
+      <pre><code>int a = 10;           // initialize
+int b; b = 5;            // assign later
+
+const int MAX = 100;    // compile-time constant
+constexpr int SZ = 256; // constant evaluated at compile-time (C++11+)</code></pre>
+      <a class="toplink" href="#overview">↑ top</a>
+    </section>
+
+    <section id="operators">
+      <h2>Operators</h2>
+      <p class="desc">Arithmetic, relational, logical, bitwise, assignment and more.</p>
+
+      <h3>Arithmetic</h3>
+      <pre><code>int a = 10, b = 3;
+int sum = a + b;    // +   -> 13
+int diff = a - b;   // -   -> 7
+int prod = a * b;   // *   -> 30
+int divi = a / b;   // /   -> 3 (integer division)
+int mod = a % b;    // %   -> 1
+
+a++; ++a; // increment (postfix & prefix)
+b--; --b; // decrement</code></pre>
+
+      <h3>Relational / Comparison</h3>
+      <pre><code>bool eq = (a == b); // equal
+bool ne = (a != b);      // not equal
+bool gt = (a &gt; b);
+bool lt = (a &lt; b);
+bool ge = (a &gt;= b);
+bool le = (a &lt;= b);</code></pre>
+
+      <h3>Logical</h3>
+      <pre><code>bool res = (a &gt; 0) && (b &gt; 0); // logical AND
+bool any = (a &gt; 0) || (b &gt; 0);        // logical OR
+bool notx = !(a &gt; 0);                   // logical NOT</code></pre>
+
+      <h3>Bitwise</h3>
+      <pre><code>int x = 5;      // 0101
+int y = 3;      // 0011
+int anded = x &amp; y;  // &amp;  -> 0001 -> 1
+int ored  = x | y;      // |   -> 0111 -> 7
+int xored = x ^ y;      // ^   -> 0110 -> 6
+int shl   = x &lt;&lt; 1; // <<  -> 1010 -> 10
+int shr   = x &gt;&gt; 1; // >>  -> 0010 -> 2
+int neg   = ~x;         // ~   -> bitwise NOT</code></pre>
+
+      <h3>Assignment &amp; Compound</h3>
+      <pre><code>int v = 10;
+v += 5;  // v = v + 5
+v -= 2;  // v = v - 2
+v *= 3;  // v = v * 3
+v /= 2;  // v = v / 2
+v %= 4;  // v = v % 4</code></pre>
+
+      <h3>Ternary</h3>
+      <pre><code>int sign = (x &gt;= 0) ? 1 : -1;</code></pre>
+
+      <a class="toplink" href="#overview">↑ top</a>
+    </section>
+
+    <section id="precedence">
+      <h2>Operator Precedence (short)</h2>
+      <p class="desc">Higher precedence evaluated first. Common subset (highest → lowest):</p>
+      <table>
+        <thead><tr><th>Precedence</th><th>Operators (examples)</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>++, -- (prefix), unary + - , !, ~</td></tr>
+          <tr><td>2</td><td>&lt;&lt; &gt;&gt; (shifts)</td></tr>
+          <tr><td>3</td><td>* / %</td></tr>
+          <tr><td>4</td><td>+ -</td></tr>
+          <tr><td>5</td><td>&lt; &lt;= &gt; &gt;=</td></tr>
+          <tr><td>6</td><td>== !=</td></tr>
+          <tr><td>7</td><td>&amp; (bitwise)</td></tr>
+          <tr><td>8</td><td>^</td></tr>
+          <tr><td>9</td><td>|</td></tr>
+          <tr><td>10</td><td>&amp;&amp; (logical)</td></tr>
+          <tr><td>11</td><td>|| (logical)</td></tr>
+          <tr><td>12</td><td>? : (ternary)</td></tr>
+          <tr><td>13</td><td>=, +=, -= (assignment)</td></tr>
+        </tbody>
+      </table>
+      <a class="toplink" href="#overview">↑ top</a>
+    </section>
+
+    <section id="escapes">
+      <h2>Escape Sequences</h2>
+      <pre><code>"\a"  // bell
+"\b"  // backspace
+"\f"  // formfeed
+"\n"  // newline
+"\r"  // carriage return
+"\t"  // tab
+"\\"  // backslash
+"\'"  // single quote
+"\""  // double quote
+"\0"  // null terminator
+"\nn" // octal
+"\xhh"// hex</code></pre>
+      <a class="toplink" href="#overview">↑ top</a>
+    </section>
+
+    <section id="comments">
+      <h2>Comments</h2>
+      <pre><code>// single line
+
+/* multi-line
+   comment */
+</code></pre>
+      <a class="toplink" href="#overview">↑ top</a>
+    </section>
+
+    <section id="strings">
+      <h2>Strings &amp; Char Arrays</h2>
+      <p class="desc">std::string (recommended) and C-style char arrays.</p>
+      <pre><code>#include &lt;string&gt;
+using std::string;
+
+string s = "Hello";
+s += " World";          // concatenation
+size_t n = s.length();
+
+char buf[] = "Hi";     // C-style (null-terminated)
+buf[0] = 'h';</code></pre>
+      <a class="toplink" href="#overview">↑ top</a>
+    </section>
+
+    <section id="arrays">
+      <h2>Arrays</h2>
+      <pre><code>// Static array
+int arr[5] = {1,2,3,4,5};
+for (int i = 0; i &lt; 5; ++i) cout &lt;&lt; arr[i] &lt;&lt; ' ';
+
+// Multi-dimensional
+int mat[2][3] = { {1,2,3}, {4,5,6} };</code></pre>
+      <a class="toplink" href="#overview">↑ top</a>
+    </section>
+
+    <section id="vector">
+      <h2>Vectors &amp; STL Basics</h2>
+      <p class="desc">Use <code>std::vector</code> for dynamic arrays; basics of iterators and common containers.</p>
+      <pre><code>#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+
+std::vector&lt;int&gt; v = {1,2,3};
+v.push_back(4);
+for (int x : v) cout &lt;&lt; x &lt;&lt; ' ';
+
+std::sort(v.begin(), v.end());  // algorithm helpers
+// Other containers: std::map, std::set, std::unordered_map</code></pre>
+      <a class="toplink" href="#overview">↑ top</a>
+    </section>
+
+    <section id="control">
+      <h2>Control Flow — if, else-if, switch</h2>
+      <pre><code>int x = 10;
+
+// if-else
+if (x &gt; 0) {
+    cout &lt;&lt; "positive";
+} else if (x == 0) {
+    cout &lt;&lt; "zero";
+} else {
+    cout &lt;&lt; "negative";
+}
+
+// switch (integral only)
+int day = 2;
+switch (day) {
+  case 1: cout &lt;&lt; "Mon"; break;
+  case 2: cout &lt;&lt; "Tue"; break;
+  default: cout &lt;&lt; "Other";
+}</code></pre>
+      <a class="toplink" href="#overview">↑ top</a>
+    </section>
+
+    <section id="loops">
+      <h2>Loops — for / while / do-while</h2>
+      <p class="desc">Classic and range-based loops.</p>
+
+      <h3>For loop</h3>
+      <pre><code>for (int i = 0; i &lt; 5; ++i) {
+    cout &lt;&lt; i &lt;&lt; ' ';
+}</code></pre>
+
+      <h3>Range-based for (C++11+)</h3>
+      <pre><code>std::vector&lt;int&gt; v = {1,2,3};
+for (int &amp;x : v) {     // iterate by reference
+    cout &lt;&lt; x &lt;&lt; ' ';
+}</code></pre>
+
+      <h3>While</h3>
+      <pre><code>int n = 5;
+while (n &gt; 0) {
+    cout &lt;&lt; n-- &lt;&lt; ' ';
+}</code></pre>
+
+      <h3>Do-while</h3>
+      <pre><code>int i = 0;
+do {
+    cout &lt;&lt; i &lt;&lt; ' ';
+    ++i;
+} while (i &lt; 3);</code></pre>
+
+      <h3>Nested loops example</h3>
+      <pre><code>for (int r=0; r&lt;3; ++r){
+    for (int c=0; c&lt;3; ++c){
+        cout &lt;&lt; r << ',' << c &lt;&lt; ' ';
+    }
+}</code></pre>
+
+      <a class="toplink" href="#overview">↑ top</a>
+    </section>
+
+    <section id="jump">
+      <h2>Break &amp; Continue</h2>
+      <pre><code>for (int i=0;i&lt;10;++i){
+    if (i==3) continue; // skip 3
+    if (i==7) break;    // stop at 7
+    cout &lt;&lt; i &lt;&lt; ' ';
+}</code></pre>
+      <a class="toplink" href="#overview">↑ top</a>
+    </section>
+
+    <section id="functions">
+      <h2>Functions</h2>
+      <p class="desc">Declaration, definition, default args, overloading, pass-by-value/reference.</p>
+      <pre><code>// declaration (prototype)
+int add(int a, int b);
+
+// definition
+int add(int a,int b){ return a+b; }
+
+// default argument
+int mul(int a,int b=2){ return a*b; }
+
+// overloading
+int f(int) { return 1; }
+double f(double) { return 2.0; }
+
+// pass by reference
+void inc(int &amp;x){ ++x; }
+
+// inline (suggests inlining)
+inline int sq(int x){ return x*x; }</code></pre>
+      <a class="toplink" href="#overview">↑ top</a>
+    </section>
+
+    <section id="recursion">
+      <h2>Recursion</h2>
+      <pre><code>int factorial(int n){
+    if (n &lt;= 1) return 1;
+    return n * factorial(n-1);
+}</code></pre>
+      <a class="toplink" href="#overview">↑ top</a>
+    </section>
+
+    <section id="pointers">
+      <h2>Pointers</h2>
+      <p class="desc">Store addresses; dereference with <code>*</code>. Use carefully.</p>
+      <pre><code>int x = 42;
+int *p = &amp;x;     // pointer to x
+cout &lt;&lt; p;     // prints address
+cout &lt;&lt; *p;    // prints 42
+
+*p = 100;          // changes x</code></pre>
+      <a class="toplink" href="#overview">↑ top</a>
+    </section>
+
+    <section id="references">
+      <h2>References</h2>
+      <pre><code>int a = 5;
+int &amp;ref = a; // alias for a
+ref = 10;        // a becomes 10
+</code></pre>
+      <a class="toplink" href="#overview">↑ top</a>
+    </section>
+
+    <section id="dynamic">
+      <h2>Dynamic Memory</h2>
+      <pre><code>int *p = new int(5);   // allocate single int
+delete p;                // free
+
+int *arr = new int[10];  // allocate array
+delete[] arr;            // free array</code></pre>
+      <a class="toplink" href="#overview">↑ top</a>
+    </section>
+
+    <section id="structs">
+      <h2>Structs &amp; Unions</h2>
+      <pre><code>struct Point { int x; int y; };
+Point p{1,2};
+cout &lt;&lt; p.x;
+
+union U {
+  int i;
+  float f;
+}; // shares memory</code></pre>
+      <a class="toplink" href="#overview">↑ top</a>
+    </section>
+
+    <section id="oop">
+      <h2>OOP — Classes, constructors, destructors</h2>
+      <pre><code>class Person {
+public:
+    std::string name;
+    int age;
+    Person(std::string n, int a): name(std::move(n)), age(a) {}
+    ~Person() { /* destructor */ }
+    void greet() const { cout &lt;&lt; "Hi " &lt;&lt; name; }
+};</code></pre>
+      <a class="toplink" href="#overview">↑ top</a>
+    </section>
+
+    <section id="inheritance">
+      <h2>Inheritance &amp; Polymorphism</h2>
+      <p class="desc">Base/derived classes, virtual functions and overriding.</p>
+      <pre><code>class Base {
+public:
+    virtual void speak(){ cout &lt;&lt; "base\n"; }
+    virtual ~Base() = default;
+};
+class Derived : public Base {
+public:
+    void speak() override { cout &lt;&lt; "derived\n"; }
+};
+
+Base* b = new Derived();
+b->speak(); // calls Derived::speak
+delete b;</code></pre>
+      <a class="toplink" href="#overview">↑ top</a>
+    </section>
+
+    <section id="templates">
+      <h2>Templates</h2>
+      <pre><code>// Function template
+template&lt;typename T&gt;
+T add(T a, T b){ return a + b; }
+
+// Class template
+template&lt;typename T&gt;
+class Box { T v; public: Box(T x):v(x){} T get(){return v;} };</code></pre>
+      <a class="toplink" href="#overview">↑ top</a>
+    </section>
+
+    <section id="exceptions">
+      <h2>Exception Handling</h2>
+      <pre><code>try {
+    if (x &lt; 0) throw std::runtime_error("neg");
+    // ...
+} catch (const std::exception &amp;e) {
+    cerr &lt;&lt; "Error: " &lt;&lt; e.what();
+}</code></pre>
+      <a class="toplink" href="#overview">↑ top</a>
+    </section>
+
+    <section id="files">
+      <h2>File I/O</h2>
+      <pre><code>#include &lt;fstream&gt;
+std::ofstream out("out.txt");
+out &lt;&lt; "Line\n";
+out.close();
+
+std::ifstream in("out.txt");
+std::string line;
+while (std::getline(in,line)) cout &lt;&lt; line &lt;&lt; '\n';</code></pre>
+      <a class="toplink" href="#overview">↑ top</a>
+    </section>
+
+    <section id="preproc">
+      <h2>Preprocessor &amp; Macros</h2>
+      <pre><code>#include &lt;iostream&gt;
+#define PI 3.14159
+
+#ifndef MYHEADER_H
+#define MYHEADER_H
+// header contents
+#endif</code></pre>
+      <a class="toplink" href="#overview">↑ top</a>
+    </section>
+
+    <section id="namespaces">
+      <h2>Namespaces</h2>
+      <pre><code>namespace math {
+    int add(int a,int b){ return a+b; }
+}
+using math::add;
+cout &lt;&lt; add(1,2);</code></pre>
+      <a class="toplink" href="#overview">↑ top</a>
+    </section>
+
+    <section id="lambda">
+      <h2>Lambda Expressions</h2>
+      <pre><code>auto add = [](int a,int b){ return a+b; };
+cout &lt;&lt; add(2,3);  // 5
+
+// capture example
+int total = 0;
+std::for_each(v.begin(), v.end(), [&](int x){ total += x; });</code></pre>
+      <a class="toplink" href="#overview">↑ top</a>
+    </section>
+
+    <section id="smart">
+      <h2>Smart Pointers (C++11+)</h2>
+      <pre><code>#include &lt;memory&gt;
+auto up = std::make_unique&lt;int&gt;(42);  // unique_ptr
+auto sp = std::make_shared&lt;int&gt;(42); // shared_ptr
+// no manual delete needed for these</code></pre>
+      <a class="toplink" href="#overview">↑ top</a>
+    </section>
+
+    <section id="cheats">
+      <h2>Cheat Sheet — Quick snippets</h2>
+      <div class="grid">
+        <pre><code>// swap
+std::swap(a,b);</code></pre>
+        <pre><code>// stoi / to_string
+int n = std::stoi("123");
+std::string s = std::to_string(5);</code></pre>
+        <pre><code>// range for with index
+for (size_t i=0;i&lt;v.size();++i) cout &lt;&lt; v[i];</code></pre>
+        <pre><code>// constexpr function
+constexpr int square(int x){ return x*x; }</code></pre>
+      </div>
+      <p style="margin-top:12px"><a class="toplink" href="#overview">↑ top</a></p>
+    </section>
+
+    <footer>
+      Compact C++ notes — updated for clarity. Tell me any extra topic you want added.
+    </footer>
+  </main>
+
+  <script>
+    function filterLinks(query){
+      query = (query||'').toLowerCase();
+      document.querySelectorAll('nav a').forEach(a=>{
+        const txt = a.textContent.toLowerCase();
+        a.style.display = txt.includes(query) ? 'block' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C++ Notes - Pointers</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .card {
+      background: #fff;
+      width: 80%;
+      max-width: 900px;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .tabs {
+      display: flex;
+      background: #4caf55;
+    }
+
+    .tabs label {
+      flex: 1;
+      padding: 15px;
+      text-align: center;
+      color: #fff;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .tabs label:hover {
+      background: #117811;
+    }
+
+    input[type="radio"] {
+      display: none;
+    }
+
+    .content {
+      padding: 20px;
+      display: none;
+      animation: fadeIn 0.4s;
+    }
+
+    input#tab1:checked ~ .content1,
+    input#tab2:checked ~ .content2,
+    input#tab3:checked ~ .content3 {
+      display: block;
+    }
+
+    input#tab1:checked ~ .tabs label[for="tab1"],
+    input#tab2:checked ~ .tabs label[for="tab2"],
+    input#tab3:checked ~ .tabs label[for="tab3"] {
+      background: #117811;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #4caf55;
+    }
+
+    h3{
+        color: #1a5276;
+    }
+    pre {
+      background: #ecf0f1;
+      padding: 10px;
+      border-radius: 6px;
+      overflow-x: auto;
+    }
+    ul {
+      line-height: 1.8;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <input type="radio" name="tabs" id="tab1" checked>
+    <input type="radio" name="tabs" id="tab2">
+    <input type="radio" name="tabs" id="tab3">
+
+    <div class="tabs">
+      <label for="tab1">Definition</label>
+      <label for="tab2">Examples</label>
+      <label for="tab3">Questions</label>
+    </div>
+
+    <!-- Definition Section -->
+    <div class="content content1">
+      <h2>Pointers in C++</h2>
+      <p>
+        A <b>pointer</b> is a variable that stores the memory address of another variable.  
+        Pointers allow direct access to memory and enable dynamic memory allocation, arrays, strings, and advanced concepts like data structures.
+      </p>
+      <h3>Key Concepts:</h3>
+      <ul>
+        <li><b>Declaration:</b> <code>int *ptr;</code> (creates a pointer to int).</li>
+        <li><b>Address-of Operator (&):</b> Gives memory address of a variable.</li>
+        <li><b>Dereference Operator (*):</b> Accesses the value stored at the address.</li>
+        <li>Pointers are widely used in arrays, functions, and dynamic memory.</li>
+      </ul>
+    </div>
+
+    <!-- Examples Section -->
+    <div class="content content2">
+      <h2>Examples of Pointers</h2>
+
+      <h3>1. Basic Pointer Usage</h3>
+      <pre>
+int x = 10;
+int *p = &x;
+cout &lt;&lt; "x = " &lt;&lt; x &lt;&lt; endl;
+cout &lt;&lt; "Address of x = " &lt;&lt; p &lt;&lt; endl;
+cout &lt;&lt; "Value using pointer = " &lt;&lt; *p;
+      </pre>
+
+      <h3>2. Swapping Two Numbers</h3>
+      <pre>
+void swap(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+      </pre>
+
+      <h3>3. Pointer Arithmetic with Arrays</h3>
+      <pre>
+int arr[5] = {1,2,3,4,5};
+int *p = arr;
+for(int i=0;i&lt;5;i++) {
+    cout &lt;&lt; *(p+i) &lt;&lt; " ";
+}
+      </pre>
+
+      <h3>4. Find Maximum Element in Array</h3>
+      <pre>
+int arr[] = {10, 55, 23, 78, 44};
+int *p = arr;
+int max = *p;
+for(int i=0;i&lt;5;i++) {
+    if(*(p+i) &gt; max) max = *(p+i);
+}
+cout &lt;&lt; "Maximum = " &lt;&lt; max;
+      </pre>
+
+      <h3>5. Pointer to Pointer</h3>
+      <pre>
+int x = 100;
+int *p = &x;
+int **pp = &p;
+cout &lt;&lt; "x = " &lt;&lt; **pp;
+      </pre>
+
+      <h3>6. Dynamic Memory Allocation</h3>
+      <pre>
+int *p = new int;
+*p = 50;
+cout &lt;&lt; "Value = " &lt;&lt; *p;
+delete p;
+      </pre>
+
+      <h3>7. String with Pointers</h3>
+      <pre>
+char str[] = "Hello";
+char *p = str;
+while(*p != '\0') {
+    cout &lt;&lt; *p;
+    p++;
+}
+      </pre>
+
+      <h3>8. Function Returning Pointer</h3>
+      <pre>
+int* larger(int *a, int *b) {
+    if(*a &gt; *b) return a;
+    else return b;
+}
+      </pre>
+
+      <h3>9. Pointer with Structures</h3>
+      <pre>
+struct Student { int id; char name[20]; };
+Student s = {101, "Raj"};
+Student *ptr = &s;
+cout &lt;&lt; "ID: " &lt;&lt; ptr-&gt;id &lt;&lt; " Name: " &lt;&lt; ptr-&gt;name;
+      </pre>
+    </div>
+
+    <!-- Questions Section -->
+    <div class="content content3">
+      <h2>Practice Questions</h2>
+      <ul>
+        <li>Write a program to swap two numbers using pointers.</li>
+        <li>Demonstrate pointer arithmetic on an array.</li>
+        <li>Find the maximum and minimum element in an array using pointers.</li>
+        <li>Implement a function that returns the larger of two numbers using pointers.</li>
+        <li>Use pointers to reverse a string.</li>
+        <li>Write a program using dynamic memory allocation to store n integers and find their sum.</li>
+        <li>Use pointer-to-pointer to manipulate data.</li>
+        <li>Demonstrate accessing structure members using pointers.</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

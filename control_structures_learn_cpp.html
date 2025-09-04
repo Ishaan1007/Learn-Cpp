@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C++ Notes - Chapter 3</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6fb;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .card {
+      width: 90%;
+      max-width: 900px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      overflow: hidden;
+    }
+
+    .tabs {
+      display: flex;
+      background: #4caf55;
+    }
+
+    .tabs label {
+      flex: 1;
+      padding: 14px;
+      color: white;
+      text-align: center;
+      cursor: pointer;
+      transition: background 0.3s;
+      font-weight: bold;
+    }
+
+    .tabs label:hover {
+      background: #117811;
+    }
+
+    input[type="radio"] {
+      display: none;
+    }
+
+    .content {
+      padding: 20px;
+      display: none;
+      line-height: 1.6;
+    }
+
+    input#def:checked ~ .tabs label[for="def"],
+    input#ex:checked ~ .tabs label[for="ex"],
+    input#ques:checked ~ .tabs label[for="ques"] {
+      background: #117811;
+    }
+
+    input#def:checked ~ #definition,
+    input#ex:checked ~ #examples,
+    input#ques:checked ~ #questions {
+      display: block;
+    }
+
+    pre {
+      background: #f8f8f8;
+      padding: 12px;
+      border-radius: 6px;
+      overflow-x: auto;
+      font-size: 14px;
+    }
+
+    h2 { margin-top: 0; color: #4caf55; }
+    h3 { color: #1a5276; margin-bottom: 6px; }
+    ul { margin-left: 20px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <!-- radio buttons -->
+    <input type="radio" id="def" name="tab" checked>
+    <input type="radio" id="ex" name="tab">
+    <input type="radio" id="ques" name="tab">
+
+    <!-- tabs -->
+    <div class="tabs">
+      <label for="def">Definition</label>
+      <label for="ex">Examples</label>
+      <label for="ques">Questions</label>
+    </div>
+
+    <!-- definition -->
+    <div id="definition" class="content">
+      <h2>Chapter 3: Control Structures</h2>
+      <p>In C++, <b>control structures</b> allow us to alter the normal flow of execution of a program. They are divided into:</p>
+
+      <h3>1. Decision Making</h3>
+      <ul>
+        <li><b>if:</b> Executes a block if condition is true.</li>
+        <li><b>if-else:</b> Executes one block if true, another if false.</li>
+        <li><b>else-if ladder:</b> Checks multiple conditions sequentially.</li>
+        <li><b>switch-case:</b> Multi-way branching based on a variable’s value.</li>
+      </ul>
+
+      <h3>2. Looping</h3>
+      <ul>
+        <li><b>for loop:</b> Used when the number of iterations is known.</li>
+        <li><b>while loop:</b> Executes block repeatedly while condition is true.</li>
+        <li><b>do-while loop:</b> Executes block at least once, then checks condition.</li>
+      </ul>
+
+      <h3>3. Jump Statements</h3>
+      <ul>
+        <li><b>break:</b> Terminates the loop/switch immediately.</li>
+        <li><b>continue:</b> Skips current iteration, goes to next.</li>
+        <li><b>goto:</b> Transfers control to a labeled statement (rarely used).</li>
+      </ul>
+    </div>
+
+    <!-- examples -->
+    <div id="examples" class="content">
+      <h2>Examples</h2>
+
+      <h3>1. if-else Example</h3>
+      <pre>
+#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    int age;
+    cout &lt;&lt; "Enter age: ";
+    cin &gt;&gt; age;
+
+    if(age >= 18)
+        cout &lt;&lt; "Eligible to vote";
+    else
+        cout &lt;&lt; "Not eligible to vote";
+
+    return 0;
+}
+      </pre>
+
+      <h3>2. for Loop Example</h3>
+      <pre>
+#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    for(int i=1; i&lt;=5; i++) {
+        cout &lt;&lt; i &lt;&lt; " ";
+    }
+    return 0;
+}
+      </pre>
+
+      <h3>3. switch-case Example</h3>
+      <pre>
+#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    int choice;
+    cout &lt;&lt; "1. Hello  2. Bye" &lt;&lt; endl;
+    cin &gt;&gt; choice;
+
+    switch(choice) {
+        case 1: cout &lt;&lt; "Hello"; break;
+        case 2: cout &lt;&lt; "Bye"; break;
+        default: cout &lt;&lt; "Invalid choice";
+    }
+    return 0;
+}
+      </pre>
+    </div>
+
+    <!-- questions -->
+    <div id="questions" class="content">
+      <h2>Practice Questions</h2>
+
+      <h3>Theory</h3>
+      <ul>
+        <li>Differentiate between if, if-else, and switch-case.</li>
+        <li>What is the difference between while and do-while loop?</li>
+        <li>Why is goto discouraged in structured programming?</li>
+      </ul>
+
+      <h3>Short Programs</h3>
+      <ul>
+        <li>Check whether a number is odd or even.</li>
+        <li>Print first 10 natural numbers using while loop.</li>
+        <li>Display multiplication table of a number using for loop.</li>
+      </ul>
+
+      <h3>Long Programs</h3>
+      <ul>
+        <li>Find factorial of a number using loops.</li>
+        <li>Print Fibonacci series using while loop.</li>
+        <li>Write a menu-driven program using switch-case.</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

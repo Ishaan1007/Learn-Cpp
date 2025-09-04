@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chapter 3 - Loops in C++</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background: #f4f4f9;
+    }
+    .card {
+      width: 95%;
+      max-width: 1000px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    .tabs {
+      display: flex;
+      background: #4caf55;
+    }
+    .tabs button {
+      flex: 1;
+      padding: 15px;
+      border: none;
+      background: #4caf55;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .tabs button:hover,
+    .tabs button.active {
+      background: #117811;
+    }
+    .content {
+      padding: 20px;
+      display: none;
+    }
+    .content.active {
+      display: block;
+    }
+    pre {
+      background: #f4f6f9;
+      color: black;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    h3{
+        color:#1a5276
+    }
+    h2 {
+      color: #4caf55;
+    }
+    ul { margin-left: 20px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showContent('def')">Definition</button>
+      <button class="tab-btn" onclick="showContent('ex')">Examples</button>
+      <button class="tab-btn" onclick="showContent('qs')">Questions</button>
+    </div>
+
+    <!-- Definition Tab -->
+    <div id="def" class="content active">
+      <h2>Loops in C++</h2>
+      <p>A loop is used to execute a set of statements repeatedly until a certain condition is met.</p>
+      <h3>Types of Loops:</h3>
+      <ul>
+        <li><b>for loop</b> – used when number of iterations is known.</li>
+        <li><b>while loop</b> – used when number of iterations is not known in advance.</li>
+        <li><b>do-while loop</b> – executes at least once even if condition is false.</li>
+      </ul>
+      <h3>Loop Control Statements:</h3>
+      <ul>
+        <li><b>break</b> – exits from loop immediately.</li>
+        <li><b>continue</b> – skips current iteration and moves to next.</li>
+      </ul>
+      <h3>Nested Loops:</h3>
+      <p>A loop inside another loop, commonly used for patterns and matrices.</p>
+    </div>
+
+    <!-- Examples Tab -->
+    <div id="ex" class="content">
+      <h2>Examples of Loops</h2>
+
+      <h3>1. Print numbers 1 to 10</h3>
+      <pre>
+for(int i=1; i<=10; i++) {
+    cout << i << " ";
+}
+      </pre>
+
+      <h3>2. Factorial using while loop</h3>
+      <pre>
+int n, fact=1, i=1;
+cin >> n;
+while(i<=n) {
+    fact *= i;
+    i++;
+}
+cout << fact;
+      </pre>
+
+      <h3>3. Multiplication Table</h3>
+      <pre>
+int n;
+cin >> n;
+for(int i=1; i<=10; i++) {
+    cout << n << " x " << i << " = " << n*i << endl;
+}
+      </pre>
+
+      <h3>4. Fibonacci Series (do-while)</h3>
+      <pre>
+int n, a=0, b=1, c, i=1;
+cin >> n;
+do {
+    cout << a << " ";
+    c = a+b;
+    a = b;
+    b = c;
+    i++;
+} while(i<=n);
+      </pre>
+
+      <!-- PATTERNS -->
+      <h2>⭐ Pattern Examples</h2>
+
+      <h3>5. Right Triangle of Stars</h3>
+      <pre>
+for(int i=1; i<=5; i++) {
+    for(int j=1; j<=i; j++) {
+        cout << "* ";
+    }
+    cout << endl;
+}
+      </pre>
+
+      <h3>6. Inverted Triangle</h3>
+      <pre>
+for(int i=5; i>=1; i--) {
+    for(int j=1; j<=i; j++) {
+        cout << "* ";
+    }
+    cout << endl;
+}
+      </pre>
+
+      <h3>7. Pyramid Pattern</h3>
+      <pre>
+for(int i=1; i<=5; i++) {
+    for(int j=1; j<=5-i; j++) cout << " ";
+    for(int k=1; k<=2*i-1; k++) cout << "*";
+    cout << endl;
+}
+      </pre>
+
+      <h3>8. Number Pyramid</h3>
+      <pre>
+for(int i=1; i<=5; i++) {
+    for(int j=1; j<=i; j++) {
+        cout << j << " ";
+    }
+    cout << endl;
+}
+      </pre>
+
+      <h3>9. Floyd’s Triangle</h3>
+      <pre>
+int num=1;
+for(int i=1; i<=5; i++) {
+    for(int j=1; j<=i; j++) {
+        cout << num++ << " ";
+    }
+    cout << endl;
+}
+      </pre>
+
+      <h3>10. Hollow Square</h3>
+      <pre>
+for(int i=1; i<=5; i++) {
+    for(int j=1; j<=5; j++) {
+        if(i==1 || i==5 || j==1 || j==5) cout << "* ";
+        else cout << "  ";
+    }
+    cout << endl;
+}
+      </pre>
+
+      <h3>11. Diamond Pattern</h3>
+      <pre>
+// upper pyramid
+for(int i=1; i<=5; i++) {
+    for(int j=1; j<=5-i; j++) cout << " ";
+    for(int k=1; k<=2*i-1; k++) cout << "*";
+    cout << endl;
+}
+// lower pyramid
+for(int i=4; i>=1; i--) {
+    for(int j=1; j<=5-i; j++) cout << " ";
+    for(int k=1; k<=2*i-1; k++) cout << "*";
+    cout << endl;
+}
+      </pre>
+    </div>
+
+    <!-- Questions Tab -->
+    <div id="qs" class="content">
+      <h2>Practice Questions</h2>
+
+      <h3>Theory Questions</h3>
+      <ul>
+        <li>Differentiate between for and while loop.</li>
+        <li>What is the advantage of do-while loop?</li>
+        <li>Explain break and continue with example.</li>
+        <li>What is an infinite loop? Give an example.</li>
+      </ul>
+
+      <h3>Coding Questions</h3>
+      <ul>
+        <li>Print all even numbers between 1 and 100.</li>
+        <li>Display all prime numbers between 1 and 200.</li>
+        <li>Find GCD of two numbers.</li>
+        <li>Generate Floyd’s Triangle with 10 rows.</li>
+        <li>Print a diamond using numbers.</li>
+        <li>Check if a number is palindrome using loop.</li>
+        <li>Sum of digits of a number.</li>
+        <li>Print Armstrong numbers from 1–1000.</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    function showContent(id) {
+      let contents = document.querySelectorAll('.content');
+      let buttons = document.querySelectorAll('.tab-btn');
+      contents.forEach(c => c.classList.remove('active'));
+      buttons.forEach(b => b.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      event.target.classList.add('active');
+    }
+  </script>
+</body>
+</html>

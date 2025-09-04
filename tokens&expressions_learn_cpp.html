@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 2 - Tokens & Expressions</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7fb;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .card {
+      width: 80%;
+      max-width: 850px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      overflow: hidden;
+    }
+
+    .tabs {
+      display: flex;
+      background: #4caf55;
+    }
+
+    .tabs label {
+      flex: 1;
+      padding: 15px;
+      color: white;
+      text-align: center;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .tabs label:hover {
+      background: #117811;
+    }
+
+    input[type="radio"] {
+      display: none;
+    }
+
+    .content {
+      padding: 20px;
+      display: none;
+      line-height: 1.6;
+    }
+
+    input#def:checked ~ .tabs label[for="def"],
+    input#ex:checked ~ .tabs label[for="ex"],
+    input#ques:checked ~ .tabs label[for="ques"] {
+      background: #117811;
+    }
+
+    input#def:checked ~ #definition,
+    input#ex:checked ~ #examples,
+    input#ques:checked ~ #questions {
+      display: block;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #2c3e50;
+    }
+
+    h3{
+        color: #1a5276;
+    }
+
+    ul { margin-left: 20px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <!-- radio buttons -->
+    <input type="radio" id="def" name="tab" checked>
+    <input type="radio" id="ex" name="tab">
+    <input type="radio" id="ques" name="tab">
+
+    <!-- tabs -->
+    <div class="tabs">
+      <label for="def">Definition</label>
+      <label for="ex">Examples</label>
+      <label for="ques">Questions</label>
+    </div>
+
+    <!-- content -->
+    <div id="definition" class="content">
+      <h2>Chapter 2: Tokens, Expressions, and Data Types</h2>
+      <p><b>Token:</b> Smallest unit in a C++ program. Types of tokens:</p>
+      <ul>
+        <li><b>Keywords:</b> Predefined words like <code>int</code>, <code>if</code>, <code>while</code>.</li>
+        <li><b>Identifiers:</b> Names given to variables, functions, etc. (e.g., <code>marks</code>, <code>main</code>).</li>
+        <li><b>Literals/Constants:</b> Fixed values such as <code>10</code>, <code>'A'</code>, <code>3.14</code>.</li>
+        <li><b>Operators:</b> Symbols for operations (<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>==</code>).</li>
+        <li><b>Punctuators:</b> Special characters (<code>{ }</code>, <code>;</code>, <code>()</code>).</li>
+      </ul>
+
+      <h3>Data Types:</h3>
+      <ul>
+        <li><b>Basic:</b> int, char, float, double, bool.</li>
+        <li><b>Derived:</b> Array, Pointer, Reference.</li>
+        <li><b>User-defined:</b> Class, Structure, Enum, Typedef.</li>
+      </ul>
+
+      <h3>Expressions:</h3>
+      <p>Combination of variables, constants, and operators that produces a value.</p>
+      <p><b>Example:</b> <code>a + b * c</code></p>
+
+      <h3>Operators in C++:</h3>
+      <ul>
+        <li><b>Arithmetic:</b> +, -, *, /, %</li>
+        <li><b>Relational:</b> ==, !=, >, &lt;, >=, &lt;=</li>
+        <li><b>Logical:</b> &&, ||, !</li>
+        <li><b>Assignment:</b> =, +=, -=, *=, /=</li>
+        <li><b>Increment/Decrement:</b> ++, --</li>
+      </ul>
+    </div>
+
+    <div id="examples" class="content">
+      <h2>Examples</h2>
+
+      <h3>1. Using Tokens</h3>
+      <pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int age = 20;      // age is identifier, 20 is literal
+    cout &lt;&lt; "Age: " &lt;&lt; age;
+    return 0;
+}
+      </pre>
+
+      <h3>2. Arithmetic Expression</h3>
+      <pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int a = 10, b = 5, c;
+    c = a + b * 2;   // Expression
+    cout &lt;&lt; "Result: " &lt;&lt; c;
+    return 0;
+}
+      </pre>
+
+      <h3>3. Using Operators</h3>
+      <pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int x = 10, y = 20;
+    cout &lt;&lt; (x &lt; y);   // Relational (prints 1 = true)
+    cout &lt;&lt; (x == y);  // Equality (prints 0 = false)
+    return 0;
+}
+      </pre>
+    </div>
+
+    <div id="questions" class="content">
+      <h2>Practice Questions</h2>
+
+      <h3>Theory</h3>
+      <ul>
+        <li>Define token. Name five categories of tokens in C++.</li>
+        <li>Differentiate between keywords and identifiers.</li>
+        <li>What is the difference between constant and variable?</li>
+        <li>List out different types of operators in C++.</li>
+      </ul>
+
+      <h3>Short Programs</h3>
+      <ul>
+        <li>Write a program to take two numbers and show their sum, difference, product, and quotient.</li>
+        <li>Write a program to demonstrate relational operators.</li>
+        <li>Write a program to increment and decrement a number.</li>
+      </ul>
+
+      <h3>Long Answer</h3>
+      <ul>
+        <li>Explain different data types in C++ with examples.</li>
+        <li>Write a program using logical operators to check if a number lies between 10 and 50.</li>
+        <li>Explain with example how expressions are evaluated in C++.</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

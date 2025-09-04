@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Do While Loop in C++</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background: #eef2f7;
+    }
+    .card {
+      width: 95%;
+      max-width: 900px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    .tabs {
+      display: flex;
+      background: #4caf55;
+    }
+    .tabs button {
+      flex: 1;
+      padding: 15px;
+      border: none;
+      background: #4caf55;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .tabs button:hover,
+    .tabs button.active {
+      background: #117811;
+    }
+    .content {
+      padding: 20px;
+      display: none;
+    }
+    .content.active {
+      display: block;
+    }
+    pre {
+      background: #f4f4f4;
+      color: black;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    h2 {
+      color: #4caf55;
+    }
+    h3{
+        color: #1a5276;
+    }
+    ul { margin-left: 20px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showContent('def')">Definition</button>
+      <button class="tab-btn" onclick="showContent('ex')">Examples</button>
+      <button class="tab-btn" onclick="showContent('qs')">Questions</button>
+    </div>
+
+    <!-- Definition Tab -->
+    <div id="def" class="content active">
+      <h2>Do While Loop in C++</h2>
+      <p>
+        The <b>do-while loop</b> is an <b>exit-controlled loop</b>.  
+        The loop body executes <b>at least once</b>, even if the condition is false initially.  
+      </p>
+      <h3>Syntax:</h3>
+      <pre>
+do {
+    // statements
+} while(condition);
+      </pre>
+      <h3>Flow of Execution:</h3>
+      <ol>
+        <li>Execute the loop body first.</li>
+        <li>Check the condition.</li>
+        <li>If true, repeat step 1.</li>
+        <li>If false, exit the loop.</li>
+      </ol>
+      <h3>Key Points:</h3>
+      <ul>
+        <li>Loop body executes at least once.</li>
+        <li>Condition is checked after execution.</li>
+        <li>Useful for menu-driven programs, input validation, games, etc.</li>
+      </ul>
+    </div>
+
+    <!-- Examples Tab -->
+    <div id="ex" class="content">
+      <h2>Examples</h2>
+
+      <h3>1. Print 1 to 10</h3>
+      <pre>
+int i=1;
+do {
+    cout << i << " ";
+    i++;
+} while(i<=10);
+      </pre>
+
+      <h3>2. Sum of First N Numbers</h3>
+      <pre>
+int n, sum=0, i=1;
+cin >> n;
+do {
+    sum += i;
+    i++;
+} while(i<=n);
+cout << "Sum = " << sum;
+      </pre>
+
+      <h3>3. Factorial</h3>
+      <pre>
+int n, fact=1, i=1;
+cin >> n;
+do {
+    fact *= i;
+    i++;
+} while(i<=n);
+cout << "Factorial = " << fact;
+      </pre>
+
+      <h3>4. Menu Driven Program</h3>
+      <pre>
+int choice;
+do {
+    cout << "1. Add\n2. Subtract\n3. Exit\n";
+    cin >> choice;
+    if(choice==1) cout << "Addition\n";
+    else if(choice==2) cout << "Subtraction\n";
+} while(choice!=3);
+      </pre>
+
+      <h3>5. Number Guessing Game</h3>
+      <pre>
+int secret=7, guess;
+do {
+    cout << "Guess number: ";
+    cin >> guess;
+    if(guess!=secret) cout << "Wrong! Try again.\n";
+} while(guess!=secret);
+cout << "Correct!";
+      </pre>
+
+      <h3>6. Print Digits of a Number</h3>
+      <pre>
+int n;
+cin >> n;
+do {
+    cout << n % 10 << " ";
+    n /= 10;
+} while(n > 0);
+      </pre>
+
+      <h3>7. Repeat Until User Enters 0</h3>
+      <pre>
+int num;
+do {
+    cin >> num;
+    cout << "You entered: " << num << endl;
+} while(num!=0);
+      </pre>
+    </div>
+
+    <!-- Questions Tab -->
+    <div id="qs" class="content">
+      <h2>Practice Questions</h2>
+
+      <h3>Theory Questions</h3>
+      <ul>
+        <li>How is do-while different from while loop?</li>
+        <li>Why is do-while called exit-controlled?</li>
+        <li>Give one example where do-while is better than while.</li>
+      </ul>
+
+      <h3>Coding Questions</h3>
+      <ul>
+        <li>Print Fibonacci series using do-while loop.</li>
+        <li>Check whether a number is prime using do-while.</li>
+        <li>Find sum of digits using do-while.</li>
+        <li>Reverse a number using do-while.</li>
+        <li>Check if a number is Armstrong.</li>
+        <li>Write a menu-driven calculator using do-while.</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    function showContent(id) {
+      let contents = document.querySelectorAll('.content');
+      let buttons = document.querySelectorAll('.tab-btn');
+      contents.forEach(c => c.classList.remove('active'));
+      buttons.forEach(b => b.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      event.target.classList.add('active');
+    }
+  </script>
+</body>
+</html>

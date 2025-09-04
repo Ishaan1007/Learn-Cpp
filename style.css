@@ -1,0 +1,308 @@
+body{
+    margin:0; 
+    padding: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+    background-attachment: fixed;
+    background-image: url(bg_cpp.png);
+}
+.page-content{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    position: relative;
+    margin-bottom: 50px;
+}
+
+
+
+/* .carousel-container{
+width: 600px;
+height: 400px;
+overflow: hidden;
+border-radius: 15px;
+box-shadow: 0 10px 20px rgba(0,0,0,0.2);   
+}
+.carousel-track{
+    display: flex;
+    position: relative;
+}
+.slide{
+    flex: 0 0 600px;
+    height: 400px;
+    position: absolute;
+    animation: fade 16s infinite;
+}
+.slide img{
+    width: 600px;
+    height: 400px;
+}
+.slide p{
+    position: absolute;
+    bottom: 0px;
+    left: 10px;
+    background-color: white;
+    color: #074000;
+    border: 4px solid #4caf55;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 4px;
+    
+} */
+
+/* --- Responsive base (scales down while keeping desktop look) --- */
+.carousel-container{
+  
+  width: min(92vw, 600px);
+  aspect-ratio: 3 / 2;          /* keeps the 600x400 shape */
+  height: auto;
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+  border: 4px solid #4caf55
+}
+
+/* make track/slides fill the box (works with your fade setup) */
+.carousel-track{
+    display: flex; 
+    position: relative; 
+    width: 100%; 
+    height: 100%; 
+    overflow: hidden;
+}
+.slide{ position: absolute; inset: 0; width: 100%; opacity: 0; animation: fade 16s infinite; }
+.slide img{
+  width: 100%;
+  height: 100%;           
+  background: #000; 
+  /* display: block;             */
+  
+}
+
+/* caption scales smoothly */
+.slide p{
+  position: absolute;
+  left: clamp(12px, 3vw, 20px);
+  bottom: clamp(10px, 3vw, 16px);
+  margin: 0;
+  color: #4caf55;
+  background-color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  text-decoration: underline;
+  font-weight: 700;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: clamp(14px, 2.6vw, 20px);
+  line-height: 1.15;
+}
+
+
+/* --- Breakpoints (fine-tuning only) --- */
+@media (max-width: 1024px){
+  .carousel-container{ width: min(92vw, 680px); border-radius: 14px; }
+}
+
+@media (max-width: 768px){
+  .carousel-container{ width: 94vw; border-radius: 12px; }
+  .slide p{
+    font-size: clamp(13px, 3.4vw, 18px);
+    left: clamp(10px, 4vw, 18px);
+    bottom: clamp(8px, 3.5vw, 14px);
+  }
+  body{
+    background: white;
+  }
+}
+
+@media (max-width: 480px){
+  .carousel-container{ width: 96vw; border-radius: 10px; }
+  .slide p{
+    font-size: clamp(12px, 4vw, 16px);
+    left: 12px; right: 12px;     /* keep text inside safely */
+    bottom: 10px;
+  }
+  body{
+    background: white;
+  }
+}
+/* Accessibility: stop animation for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .carousel-track, .slide{ animation: none !important; opacity: 1; }
+  .slide:not(:first-child){ display: none; }
+}
+
+@keyframes fade {
+  0% { opacity: 0; }
+  5% { opacity: 1; }
+  25% { opacity: 1; }
+  30% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* Delay for each slide */
+.slide:nth-child(1) { animation-delay: 0s; }
+.slide:nth-child(2) { animation-delay: 4s; }
+.slide:nth-child(3) { animation-delay: 8s; }
+.slide:nth-child(4) { animation-delay: 12s; }
+
+/* @keyframes slide{
+    0%, 20%{ transform: translateX(0);}
+    25%, 45%{ transform: translateX(-600px);}
+    50%, 70%{ transform: translateX(-1200px);}
+    75%, 95%{ transform: translateX(-1800px);}
+    100%{ transform: translateX(0);}
+} */
+ @media (max-width:768px)  {
+    
+ }
+ 
+nav{
+    display: flex;
+    background: linear-gradient(to right, #4caf55, #117811);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: sticky;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    z-index: 1000;
+    height: 2.5rem;
+}
+.logo {
+    font-family: fantasy;
+    font-size: 2.4rem;
+    width: auto;
+    color: #004600;
+}
+
+nav ul{
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+nav ul li a{
+    color: white;
+    position: relative;
+    text-decoration: none;
+}
+nav ul li a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0;
+    height: 2px;
+    background: white;
+    transition: width 0.3s;
+}
+nav ul li a:hover::after{
+    width: 100%;
+}
+#menu-toggle{
+    display: none;
+}
+.menu-icon{
+    display: none;
+    font-size: 26px;
+    cursor: pointer;
+    color: white;
+}
+
+
+
+@media (max-width: 600px) {
+    
+    .menu{
+        position: absolute;
+        top: 100%;
+        right: 20px;
+        flex-direction: column;
+        border-radius: 6px;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        padding: 10px 0;
+        width: 200px;
+        background: #4caf55;
+        opacity: 0;
+        transform: translate(28px, -16px) scale(0.98);
+        transform-origin: top right;        
+        transition: transform 0.35s cubic-bezier(.22, .61, .36, 1), opacity 0.25s ease;
+        pointer-events: none;
+        z-index: 1001;
+        
+    }
+    .menu-icon{
+        display: block;
+    }
+    #menu-toggle:checked ~ .menu{
+        transform: translate(0,0) scale 1;
+        opacity: 1;
+        pointer-events: auto;
+    }
+    .menu li{
+        padding: 12px 16px;
+        text-align: center;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+    .menu li:last-child{
+        border-bottom: none;
+    }
+}
+
+.card-section{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.cpp-card{
+  background: white;
+  border: 3px solid #4caf55;
+  border-radius: 12px;
+  padding: 20px;
+  width: 280px;
+  text-align: center;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.cpp-card:hover{
+  transform: translateY(-6px);
+}
+.card-info h2{
+  font-size: 22px;
+  margin: 10px 0;
+  color: #333;
+}
+.card-info p{
+  color: #555;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+.arrow-link{
+  text-decoration: none;
+  font-style: bold;
+  color: #4caf55;
+}
+.circle-arrow{
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: #4caf55;
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  transition: all 0.3s ease;
+}
+.cirle-arrow:hover{
+  background: #27ae60;
+  transform: translateX(6px) scale(1.1)
+}

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Star Pattern Programs</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background: #eef2f7;
+    }
+    .card {
+      width: 95%;
+      max-width: 900px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    .tabs {
+      display: flex;
+      background: #4caf55;
+    }
+    .tabs button {
+      flex: 1;
+      padding: 15px;
+      border: none;
+      background: #4caf55;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .tabs button:hover,
+    .tabs button.active {
+      background: #117811;
+    }
+    .content {
+      padding: 20px;
+      display: none;
+    }
+    .content.active {
+      display: block;
+    }
+    pre {
+      background: #f4f4f4;
+      color: #000000;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    h2 { color: #4caf55; }
+    .pattern {
+      font-family: monospace;
+      background: #f4f4f4;
+      display: inline-block;
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showContent('def')">Definition</button>
+      <button class="tab-btn" onclick="showContent('ex')">Examples</button>
+      <button class="tab-btn" onclick="showContent('qs')">Questions</button>
+    </div>
+
+    <!-- Definition Tab -->
+    <div id="def" class="content active">
+      <h2>Star Patterns in C++</h2>
+      <p>
+        Star patterns are common programming problems used to practice <b>nested loops</b>.  
+        They test your logic, control structures, and ability to handle spacing.  
+      </p>
+      <h3>General Rules:</h3>
+      <ul>
+        <li>Outer loop = number of rows.</li>
+        <li>Inner loop = number of columns / stars / spaces.</li>
+        <li>Use spaces carefully to align the pattern.</li>
+        <li>Think row by row.</li>
+      </ul>
+    </div>
+
+    <!-- Examples Tab -->
+    <div id="ex" class="content">
+      <h2>Tough Star Pattern Examples</h2>
+
+      <h3>1. Pyramid</h3>
+      <div class="pattern">
+         * <br>
+        *** <br>
+       ***** <br>
+      ******* 
+      </div>
+      <pre>
+for(int i=1;i&lt;=4;i++){
+  for(int j=1;j&lt;=4-i;j++) cout&lt;" ";
+  for(int k=1;k&lt;=2*i-1;k++) cout&lt;"*";
+  cout&lt;&lt;endl;
+}
+      </pre>
+
+      <h3>2. Inverted Pyramid</h3>
+      <div class="pattern">
+      *******<br>
+       *****<br>
+        ***<br>
+         *
+      </div>
+      <pre>
+for(int i=4;i>=1;i--){
+  for(int j=1;j&lt;=4-i;j++) cout&lt;&lt;" ";
+  for(int k=1;k&lt;=2*i-1;k++) cout&lt;&lt;"*";
+  cout&lt;&lt;endl;
+}
+      </pre>
+
+      <h3>3. Diamond</h3>
+      <div class="pattern">
+      &nbsp;&nbsp;&nbsp;*<br>
+      &nbsp;&nbsp;***<br>
+      &nbsp;*****<br>
+      *******<br>
+      &nbsp;*****<br>
+      &nbsp;&nbsp;***<br>
+      &nbsp;&nbsp;&nbsp;*
+      </div>
+      <pre>
+// Upper half
+for(int i=1;i&lt;=4;i++){
+  for(int j=1;j&lt;=4-i;j++) cout&lt;&lt;"&nbsp;";
+  for(int k=1;k&lt;=2*i-1;k++) cout&lt;&lt;"*";
+  cout&lt;&lt;endl;
+}
+// Lower half
+for(int i=3;i>=1;i--){
+  for(int j=1;j&lt;=4-i;j++) cout&lt;&lt;"*";
+  cout&lt;&lt;endl;
+}
+      </pre>
+
+      <h3>4. Hollow Square</h3>
+      <div class="pattern">
+      *****<br>
+      *&nbsp;&nbsp;&nbsp;*<br>
+      *&nbsp;&nbsp;&nbsp;*<br>
+      ***** 
+      </div>
+      <pre>
+for(int i=1;i&lt;=4;i++){
+  for(int j=1;j&lt;=5;j++){
+    if(i==1||i==4||j==1||j==5) cout&lt;&lt;"*";
+    else cout&lt;&lt;" ";
+  }
+  cout&lt;&lt;endl;
+}
+      </pre>
+
+      <h3>5. Hollow Pyramid</h3>
+      <div class="pattern">
+      &nbsp;&nbsp;&nbsp;*<br>
+      &nbsp;&nbsp;*&nbsp;*<br>
+      &nbsp;*&nbsp;&nbsp;&nbsp;*<br>
+      *******
+      </div>
+      <pre>
+for(int i=1;i&lt;=4;i++){
+  for(int j=1;j&lt;=4-i;j++) cout&lt;&lt;" ";
+  for(int k=1;k&lt;=2*i-1;k++){
+    if(k==1 || k==2*i-1 || i==4) cout&lt;"*";
+    else cout&lt;&lt;" ";
+  }
+  cout&lt;&lt;endl;
+}
+      </pre>
+
+      <h3>6. Right Pascal’s Triangle</h3>
+      <div class="pattern">
+      *<br>
+      **<br>
+      ***<br>
+      ****<br>
+      ***<br>
+      **<br>
+      *
+      </div>
+      <pre>
+for(int i=1;i&lt;=4;i++){
+  for(int j=1;j&lt;=i;j++) cout&lt;&lt;"*";
+  cout&lt;&lt;endl;
+}
+for(int i=3;i>=1;i--){
+  for(int j=1;j&lt;=i;j++) cout&lt;&lt;"*";
+  cout&lt;&lt;endl;
+}
+      </pre>
+
+      <h3>7. Butterfly Pattern</h3>
+      <div class="pattern">
+      *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*<br>
+      **&nbsp;&nbsp;&nbsp;&nbsp;**<br>
+      ***&nbsp;&nbsp;***<br>
+      ********<br>
+      ********<br>
+      ***&nbsp;&nbsp;***<br>
+      **&nbsp;&nbsp;&nbsp;&nbsp;**<br>
+      *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*
+      </div>
+      <pre>
+int n=4;
+for(int i=1;i&lt;=n;i++){
+  for(int j=1;j&lt;=i;j++) cout&lt;&lt;"*";
+  for(int s=1;s&lt;=2*(n-i);s++) cout&lt;&lt;"&nbsp;";
+  for(int j=1;j&lt;=i;j++) cout&lt;&lt;"*";
+  cout&lt;&lt;endl;
+}
+for(int i=n;i>=1;i--){
+  for(int j=1;j&lt;=i;j++) cout&lt;&lt;"*";
+  for(int s=1;s&lt;=2*(n-i);s++) cout&lt;&lt;"&nbsp;";
+  for(int j=1;j&lt;=i;j++) cout&lt;&lt;"*";
+  cout&lt;&lt;endl;
+}
+      </pre>
+
+      <h3>8. Sandglass Pattern</h3>
+      <div class="pattern">
+      ********<br>
+      &nbsp;******&nbsp;<br>
+        &nbsp;&nbsp;****&nbsp;&nbsp;<br>
+         &nbsp;&nbsp;&nbsp;**&nbsp;&nbsp;&nbsp;<br>
+         &nbsp;&nbsp;&nbsp;**&nbsp;&nbsp;&nbsp;<br>
+        &nbsp;&nbsp;****&nbsp;&nbsp;<br>
+       &nbsp;******&nbsp;<br>
+      ********
+      </div>
+      <pre>
+int n=4;
+for(int i=n;i>=1;i--){
+  for(int j=1;j&lt;=n-i;j++) cout&lt;&lt;" ";
+  for(int k=1;k&lt;=2*i;k++) cout&lt;&lt;"*";
+  cout&lt;&lt;endl;
+}
+for(int i=1;i&lt;=n;i++){
+  for(int j=1;j&lt;=n-i;j++) cout&lt;&lt;" ";
+  for(int k=1;k&lt;=2*i;k++) cout&lt;&lt;"*";
+  cout&lt;&lt;endl;
+}
+      </pre>
+
+
+      <h3>9. Hollow Diamond</h3>
+      <div class="pattern">
+      &nbsp;&nbsp;&nbsp;*<br>
+      &nbsp;&nbsp;*&nbsp;*<br>
+      &nbsp;*&nbsp;&nbsp;&nbsp;*<br>
+      *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*<br>
+      &nbsp;*&nbsp;&nbsp;&nbsp;*<br>
+      &nbsp;&nbsp;*&nbsp;*<br>
+      &nbsp;&nbsp;&nbsp;*
+      </div>
+      <pre>
+int n=4;
+// Upper part
+for(int i=1;i&lt;=n;i++){
+  for(int j=1;j&lt;=n-i;j++) cout&lt;" ";
+  for(int k=1;k&lt;=2*i-1;k++){
+    if(k==1||k==2*i-1) cout&lt;"*";
+    else cout&lt;" ";
+  }
+  cout&lt;&lt;endl;
+}
+// Lower part
+for(int i=n-1;i>=1;i--){
+  for(int j=1;j&lt;=n-i;j++) cout&lt;" ";
+  for(int k=1;k&lt;=2*i-1;k++){
+    if(k==1||k==2*i-1) cout&lt;"*";
+    else cout&lt;" ";
+  }
+  cout&lt;&lt;endl;
+}
+      </pre>
+    </div>
+
+    <!-- Questions Tab -->
+    <div id="qs" class="content">
+      <h2>Practice Questions</h2>
+      <p>Write C++ programs to print the following patterns:</p>
+
+      <h3>1. Right Triangle</h3>
+      <div class="pattern">
+      *<br>
+      **<br>
+      ***<br>
+      ****
+      </div>
+
+      <h3>2. Hollow Rectangle</h3>
+      <div class="pattern">
+      *****<br>
+      *&nbsp;&nbsp;&nbsp;*<br>
+      *&nbsp;&nbsp;&nbsp;*<br>
+      *****
+      </div>
+
+      <h3>3. Diamond Outline</h3>
+      <div class="pattern">
+       &nbsp;&nbsp;*<br>
+       &nbsp;*&nbsp;*<br>
+       *&nbsp;&nbsp;&nbsp;*<br>
+       &nbsp;*&nbsp;*<br>
+       &nbsp;&nbsp;*
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showContent(id) {
+      let contents = document.querySelectorAll('.content');
+      let buttons = document.querySelectorAll('.tab-btn');
+      contents.forEach(c => c.classList.remove('active'));
+      buttons.forEach(b => b.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      event.target.classList.add('active');
+    }
+  </script>
+</body>
+</html>

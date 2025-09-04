@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Introduction to C++</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7fb;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .card {
+      width: 80%;
+      max-width: 800px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      overflow: hidden;
+    }
+
+    .tabs {
+      display: flex;
+      background: #4caf55;
+    }
+
+    .tabs label {
+      flex: 1;
+      padding: 15px;
+      color: white;
+      text-align: center;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .tabs label:hover {
+      background: #117811;
+    }
+
+    input[type="radio"] {
+      display: none;
+    }
+
+    .content {
+      padding: 20px;
+      display: none;
+      line-height: 1.6;
+    }
+
+    input#def:checked ~ .tabs label[for="def"],
+    input#ex:checked ~ .tabs label[for="ex"],
+    input#ques:checked ~ .tabs label[for="ques"] {
+      background: #117811;
+    }
+
+    input#def:checked ~ #definition,
+    input#ex:checked ~ #examples,
+    input#ques:checked ~ #questions {
+      display: block;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #4caf55;
+    }
+    h3{
+      color: #1a5276;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <!-- radio buttons -->
+    <input type="radio" id="def" name="tab" checked>
+    <input type="radio" id="ex" name="tab">
+    <input type="radio" id="ques" name="tab">
+
+    <!-- tabs -->
+    <div class="tabs">
+      <label for="def">Definition</label>
+      <label for="ex">Examples</label>
+      <label for="ques">Questions</label>
+    </div>
+
+    <!-- content -->
+    <div id="definition" class="content">
+      <h2>Introduction to Programming & C++</h2>
+      <p><b>Programming:</b> Writing instructions for a computer to perform tasks.</p>
+      <p><b>Evolution:</b> Machine language → Assembly language → High-level languages (C, C++, Java, Python).</p>
+      <p><b>Paradigms:</b> Procedural (C), Object-Oriented (C++).</p>
+      <p><b>C++:</b> Developed by Bjarne Stroustrup in 1979 at AT&T Bell Labs. Extension of C. Multi-paradigm.</p>
+      <p><b>Features:</b> Object-Oriented, Efficient, Portable, Reusable, Rich Library (STL).</p>
+      <p><b>Applications:</b> Operating systems, Game development, Competitive programming, GUI apps.</p>
+      <h3>Structure of a C++ Program:</h3>
+      <pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    cout &lt;&lt; "Hello, World!";
+    return 0;
+}
+      </pre>
+    </div>
+
+    <div id="examples" class="content">
+      <h2>Examples</h2>
+      <h3>1. Hello World</h3>
+      <pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    cout &lt;&lt; "Hello, World!";
+    return 0;
+}
+      </pre>
+
+      <h3>2. Add Two Numbers</h3>
+      <pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int a, b;
+    cout &lt;&lt; "Enter two numbers: ";
+    cin &gt;&gt; a &gt;&gt; b;
+    cout &lt;&lt; "Sum = " &lt;&lt; a + b;
+    return 0;
+}
+      </pre>
+
+      <h3>3. Square of a Number</h3>
+      <pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int n;
+    cout &lt;&lt; "Enter a number: ";
+    cin &gt;&gt; n;
+    cout &lt;&lt; "Square = " &lt;&lt; n * n;
+    return 0;
+}
+      </pre>
+    </div>
+
+    <div id="questions" class="content">
+      <h2>Practice Questions</h2>
+      <h3>Theory (2 Marks)</h3>
+      <ul>
+        <li>Who developed C++ and when?</li>
+        <li>Differentiate between C and C++.</li>
+        <li>List three features of C++.</li>
+      </ul>
+
+      <h3>Short Programs (5 Marks)</h3>
+      <ul>
+        <li>Write a program to print your name.</li>
+        <li>Write a program to add two numbers entered by user.</li>
+        <li>Write a program to print square of a number.</li>
+      </ul>
+
+      <h3>Long Answer (10 Marks)</h3>
+      <ul>
+        <li>Explain the difference between Machine, Assembly, and High-Level Languages.</li>
+        <li>Write and explain the structure of a basic C++ program.</li>
+        <li>Describe at least 5 real-world applications of C++.</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
